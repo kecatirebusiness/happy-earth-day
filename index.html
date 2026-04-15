@@ -168,44 +168,57 @@
   }
   .earth-stage{
     position:relative;
-    width:230px;height:230px;
+    width:260px;height:260px;
     display:flex;align-items:center;justify-content:center;
   }
-  .earth-circle{
-    width:100%;height:100%;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--green-400),var(--green-600));
-    position:relative;
+  .earth-core{
+    position:absolute;
+    inset:0;
     display:flex;align-items:center;justify-content:center;
-    box-shadow:0 20px 50px rgba(78,138,60,.3);
     animation:float 6s ease-in-out infinite;
+    z-index:2;
   }
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-  .earth-circle::before{
-    content:"";
-    position:absolute;inset:14px;
-    border-radius:50%;
-    border:2px dashed rgba(255,255,255,.35);
-    animation:spin 30s linear infinite;
+  .earth-emoji{
+    font-size:120px;
+    filter:drop-shadow(0 10px 24px rgba(78,138,60,.35));
+  }
+
+  /* Nature ring - plants arranged in a circle around earth */
+  .nature-ring{
+    position:absolute;inset:0;
+    animation:spin 40s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
-  .earth-emoji{font-size:115px;z-index:2;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
-
-  /* Dog paw trail walking around earth */
-  .paw-orbit{
-    position:absolute;inset:0;
-    animation:orbit 20s linear infinite;
-  }
-  @keyframes orbit{to{transform:rotate(360deg)}}
-  .paw-orbit .paw-print{
+  .nature-ring .plant{
     position:absolute;
-    font-size:28px;
-    filter:drop-shadow(0 2px 4px rgba(0,0,0,.15));
+    top:50%;left:50%;
+    font-size:32px;
+    filter:drop-shadow(0 3px 6px rgba(0,0,0,.12));
+    --r:115px; /* ring radius on mobile */
   }
-  .paw-orbit .p1{top:-18px;left:50%;transform:translateX(-50%)}
-  .paw-orbit .p2{top:50%;right:-18px;transform:translateY(-50%) rotate(90deg)}
-  .paw-orbit .p3{bottom:-18px;left:50%;transform:translateX(-50%) rotate(180deg)}
-  .paw-orbit .p4{top:50%;left:-18px;transform:translateY(-50%) rotate(-90deg)}
+  /* 12 plants evenly spaced — each rotates INTO position then reverses so emoji stays upright-ish */
+  .nature-ring .plant:nth-child(1){transform:translate(-50%,-50%) rotate(0deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(2){transform:translate(-50%,-50%) rotate(30deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(3){transform:translate(-50%,-50%) rotate(60deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(4){transform:translate(-50%,-50%) rotate(90deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(5){transform:translate(-50%,-50%) rotate(120deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(6){transform:translate(-50%,-50%) rotate(150deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(7){transform:translate(-50%,-50%) rotate(180deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(8){transform:translate(-50%,-50%) rotate(210deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(9){transform:translate(-50%,-50%) rotate(240deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(10){transform:translate(-50%,-50%) rotate(270deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(11){transform:translate(-50%,-50%) rotate(300deg) translateY(calc(var(--r) * -1))}
+  .nature-ring .plant:nth-child(12){transform:translate(-50%,-50%) rotate(330deg) translateY(calc(var(--r) * -1))}
+
+  /* soft glow behind the ring */
+  .earth-stage::before{
+    content:"";
+    position:absolute;inset:15%;
+    border-radius:50%;
+    background:radial-gradient(circle,var(--green-100),transparent 70%);
+    z-index:1;
+  }
 
   /* Floating cards - contained, varied movement */
   .floating{
@@ -468,10 +481,10 @@
     .hero-actions{flex-direction:row;align-items:center}
     .btn-secondary{border:none;background:transparent;padding:15px 20px}
 
-    .hero-visual{height:480px;margin:0}
-    .earth-stage{width:400px;height:400px}
+    .hero-visual{height:500px;margin:0;overflow:visible}
+    .earth-stage{width:420px;height:420px}
     .earth-emoji{font-size:180px}
-    .paw-orbit .paw-print{font-size:42px}
+    .nature-ring .plant{font-size:46px;--r:190px}
 
     .mission{padding:30px;font-size:18px}
 
@@ -516,7 +529,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="badge"><span class="dot"></span>Sábado 22 de abril · 9:00 AM</div>
+    <div class="badge"><span class="dot"></span>Viernes 25 de abril · 8:00 AM</div>
     <div class="foundation-tag">🐾 Fundación Happy por los animales</div>
     <h1>
       <span class="pink">Happy</span> <span class="plus">×</span><br>
@@ -530,14 +543,22 @@
   </div>
   <div class="hero-visual">
     <div class="earth-stage">
-      <div class="earth-circle">
-        <div class="earth-emoji">🌍</div>
+      <div class="nature-ring">
+        <span class="plant">🌴</span>
+        <span class="plant">🌳</span>
+        <span class="plant">🌿</span>
+        <span class="plant">🌲</span>
+        <span class="plant">🍃</span>
+        <span class="plant">🌱</span>
+        <span class="plant">🌴</span>
+        <span class="plant">🌳</span>
+        <span class="plant">🌿</span>
+        <span class="plant">🌲</span>
+        <span class="plant">🍃</span>
+        <span class="plant">🌱</span>
       </div>
-      <div class="paw-orbit">
-        <span class="paw-print p1">🐾</span>
-        <span class="paw-print p2">🐾</span>
-        <span class="paw-print p3">🐾</span>
-        <span class="paw-print p4">🐾</span>
+      <div class="earth-core">
+        <div class="earth-emoji">🌍</div>
       </div>
     </div>
     <div class="floating f1 green"><span class="emoji">🦴</span><span>Por ellos</span></div>
@@ -552,7 +573,7 @@
 <!-- MISSION STRIP -->
 <div class="mission">
   <div class="paws-bg"><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span></div>
-  <strong>Un planeta sano = mascotas felices.</strong><br>Por eso salimos a la calle este 22 de abril.
+  <strong>Un planeta sano = mascotas felices.</strong><br>Por eso salimos a la calle este 25 de abril.
 </div>
 
 <!-- DETAILS -->
@@ -569,7 +590,7 @@
       <div class="detail-icon">🕘</div>
       <div class="detail-text">
         <div class="detail-label">Cuándo</div>
-        <div class="detail-value">Sáb 22 abr · 9:00 AM<span class="muted">Llega 15 min antes</span></div>
+        <div class="detail-value">Vie 25 abr · 8–11 AM<span class="muted">Llega 15 min antes</span></div>
       </div>
     </div>
     <div class="detail-row">
@@ -653,7 +674,7 @@
 
       <div class="success" id="success">
         <div class="ico">🐾</div>
-        <h3>¡Nos vemos el sábado!</h3>
+        <h3>¡Nos vemos el 25 de abril!</h3>
         <p>Revisa tu correo — te enviamos todos los detalles.</p>
       </div>
     </form>
