@@ -160,13 +160,15 @@
   /* HERO VISUAL */
   .hero-visual{
     position:relative;
-    height:320px;
-    margin:32px -20px 0;
+    height:360px;
+    margin:32px 0 0;
     display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    padding:20px 0;
   }
   .earth-stage{
     position:relative;
-    width:260px;height:260px;
+    width:230px;height:230px;
     display:flex;align-items:center;justify-content:center;
   }
   .earth-circle{
@@ -187,7 +189,7 @@
     animation:spin 30s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg)}}
-  .earth-emoji{font-size:130px;z-index:2;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+  .earth-emoji{font-size:115px;z-index:2;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
 
   /* Dog paw trail walking around earth */
   .paw-orbit{
@@ -205,30 +207,36 @@
   .paw-orbit .p3{bottom:-18px;left:50%;transform:translateX(-50%) rotate(180deg)}
   .paw-orbit .p4{top:50%;left:-18px;transform:translateY(-50%) rotate(-90deg)}
 
-  /* Floating cards - smaller on mobile */
+  /* Floating cards - contained, varied movement */
   .floating{
     position:absolute;
     background:#fff;
-    border-radius:14px;
-    padding:9px 12px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    display:flex;align-items:center;gap:7px;
-    font-size:12px;font-weight:500;
+    border-radius:99px;
+    padding:7px 11px 7px 8px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    display:flex;align-items:center;gap:6px;
+    font-size:11px;font-weight:600;
     white-space:nowrap;
+    z-index:3;
   }
-  .floating .emoji{font-size:18px}
-  .f1{top:10px;left:0;animation:float 5s ease-in-out infinite;color:var(--green-600)}
-  .f2{bottom:30px;right:0;animation:float 6s ease-in-out infinite .5s;background:var(--pink-100);color:var(--pink-500)}
-  .f3{top:50%;right:-8px;animation:float 7s ease-in-out infinite 1s}
+  .floating .emoji{font-size:15px;line-height:1}
+  .floating.pink{background:var(--pink-100);color:var(--pink-500)}
+  .floating.green{background:var(--green-50);color:var(--green-600)}
+  .floating.ink{background:var(--ink);color:#fff}
 
-  /* Nose decoration */
-  .dog-nose{
-    position:absolute;
-    bottom:0;left:50%;
-    transform:translateX(-50%);
-    font-size:36px;
-    opacity:.85;
-  }
+  /* Varied float animations */
+  @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-10px)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,-8px)}}
+  @keyframes drift3{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(0,-12px) rotate(2deg)}}
+  @keyframes drift4{0%,100%{transform:translate(0,0) rotate(3deg)}50%{transform:translate(5px,-6px) rotate(-3deg)}}
+  @keyframes drift5{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,8px)}}
+
+  .f1{top:8%;left:4%;animation:drift1 5s ease-in-out infinite}
+  .f2{top:18%;right:4%;animation:drift2 6s ease-in-out infinite .3s}
+  .f3{top:50%;left:2%;animation:drift3 7s ease-in-out infinite .6s}
+  .f4{top:52%;right:2%;animation:drift4 5.5s ease-in-out infinite 1s}
+  .f5{bottom:10%;left:22%;animation:drift5 6.5s ease-in-out infinite .8s}
+  .f6{bottom:8%;right:22%;animation:drift1 7s ease-in-out infinite 1.2s}
 
   /* MISSION STRIP */
   .mission{
@@ -275,33 +283,42 @@
   .stat:nth-child(even) .num{color:var(--pink-500)}
   .stat .label{color:var(--muted);font-size:12px;margin-top:6px}
 
-  /* DETAILS */
+  /* DETAILS - compact pill card on mobile */
   .details{
-    padding:30px 20px 60px;
+    padding:24px 20px 40px;
     max-width:1240px;margin:0 auto;
-    display:flex;flex-direction:column;gap:14px;
   }
-  .detail-card{
-    padding:22px;
-    border-radius:20px;
+  .details-card{
     background:#fff;
     border:1px solid var(--pink-100);
-    display:flex;gap:16px;align-items:flex-start;
+    border-radius:22px;
+    padding:6px;
+    box-shadow:0 8px 24px rgba(168,106,144,.06);
   }
+  .detail-row{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 12px;
+    border-bottom:1px dashed var(--pink-100);
+  }
+  .detail-row:last-child{border-bottom:none}
   .detail-icon{
-    width:46px;height:46px;flex-shrink:0;
-    border-radius:14px;
+    width:40px;height:40px;flex-shrink:0;
+    border-radius:12px;
     background:var(--green-50);
     color:var(--green-600);
     display:flex;align-items:center;justify-content:center;
-    font-size:22px;
+    font-size:18px;
   }
-  .detail-card:nth-child(2) .detail-icon{background:var(--pink-50)}
-  .detail-card h3{
+  .detail-row:nth-child(2) .detail-icon{background:var(--pink-50)}
+  .detail-row:nth-child(3) .detail-icon{background:var(--cream);border:1px solid var(--pink-100)}
+  .detail-text{flex:1;min-width:0}
+  .detail-label{
     font-family:'Fredoka';font-weight:600;
-    font-size:18px;margin-bottom:4px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--pink-500);margin-bottom:2px;
   }
-  .detail-card p{color:var(--muted);line-height:1.5;font-size:14px}
+  .detail-value{color:var(--ink);font-size:14px;line-height:1.35;font-weight:500}
+  .detail-value .muted{color:var(--muted);font-weight:400;display:block;font-size:12px;margin-top:1px}
 
   /* FORM SECTION */
   .form-section{
@@ -463,11 +480,14 @@
     .stat .num{font-size:48px}
     .stat .label{font-size:14px}
 
-    .details{flex-direction:row;padding:40px 40px 80px;gap:24px}
-    .detail-card{flex-direction:column;padding:32px;flex:1}
-    .detail-icon{width:56px;height:56px;font-size:26px;margin-bottom:16px}
-    .detail-card h3{font-size:22px}
-    .detail-card p{font-size:15px}
+    .details{padding:40px 40px 80px}
+    .details-card{display:flex;padding:10px}
+    .detail-row{flex:1;flex-direction:column;align-items:flex-start;text-align:left;padding:24px;border-bottom:none;border-right:1px dashed var(--pink-100);gap:12px}
+    .detail-row:last-child{border-right:none}
+    .detail-icon{width:52px;height:52px;font-size:24px;border-radius:14px}
+    .detail-label{font-size:12px}
+    .detail-value{font-size:16px}
+    .detail-value .muted{font-size:13px}
 
     .form-section{padding:80px 40px}
     .form-wrap{flex-direction:row;gap:50px;align-items:center}
@@ -520,9 +540,12 @@
         <span class="paw-print p4">🐾</span>
       </div>
     </div>
-    <div class="floating f1"><span class="emoji">🦴</span><span>Por ellos</span></div>
-    <div class="floating f2"><span class="emoji">💗</span><span>Con amor</span></div>
+    <div class="floating f1 green"><span class="emoji">🦴</span><span>Por ellos</span></div>
+    <div class="floating f2 pink"><span class="emoji">💗</span><span>Con amor</span></div>
     <div class="floating f3"><span class="emoji">🧤</span><span>Manos a la obra</span></div>
+    <div class="floating f4 pink"><span class="emoji">🐶</span><span>Peludos felices</span></div>
+    <div class="floating f5 green"><span class="emoji">🌱</span><span>Planeta sano</span></div>
+    <div class="floating f6"><span class="emoji">♻️</span><span>Reciclar</span></div>
   </div>
 </section>
 
@@ -534,25 +557,27 @@
 
 <!-- DETAILS -->
 <section class="details" id="detalles">
-  <div class="detail-card">
-    <div class="detail-icon">📍</div>
-    <div>
-      <h3>Dónde</h3>
-      <p>Punto de encuentro en Parque Central. Te enviamos el mapa con tu zona asignada al confirmar.</p>
+  <div class="details-card">
+    <div class="detail-row">
+      <div class="detail-icon">📍</div>
+      <div class="detail-text">
+        <div class="detail-label">Dónde</div>
+        <div class="detail-value">Parque Central<span class="muted">Te enviamos el mapa al confirmar</span></div>
+      </div>
     </div>
-  </div>
-  <div class="detail-card">
-    <div class="detail-icon">🕘</div>
-    <div>
-      <h3>Cuándo</h3>
-      <p>Sábado 22 de abril, 9:00 AM a 12:00 PM. Llega 15 min antes para el check-in y tu kit.</p>
+    <div class="detail-row">
+      <div class="detail-icon">🕘</div>
+      <div class="detail-text">
+        <div class="detail-label">Cuándo</div>
+        <div class="detail-value">Sáb 22 abr · 9:00 AM<span class="muted">Llega 15 min antes</span></div>
+      </div>
     </div>
-  </div>
-  <div class="detail-card">
-    <div class="detail-icon">🎒</div>
-    <div>
-      <h3>Qué llevar</h3>
-      <p>Ropa cómoda, gorra y agua. Nosotros ponemos guantes, bolsas, snacks y mucho cariño 🐾</p>
+    <div class="detail-row">
+      <div class="detail-icon">🎒</div>
+      <div class="detail-text">
+        <div class="detail-label">Qué llevar</div>
+        <div class="detail-value">Ropa cómoda y agua<span class="muted">Guantes y bolsas los ponemos 🐾</span></div>
+      </div>
     </div>
   </div>
 </section>
