@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy × Día de la Tierra · Limpieza Comunitaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-50:#FDF5F9;
+    --pink-100:#F7E4EE;
+    --pink-200:#EDC7DC;
+    --pink-300:#D7A3C4;
+    --pink-500:#A86A90;
+    --green-50:#F1F7EC;
+    --green-200:#C8E0B0;
+    --green-400:#7FB069;
+    --green-600:#4E8A3C;
+    --green-800:#2C5A22;
+    --ink:#1F2D1A;
+    --muted:#6B7668;
+    --cream:#FBF8F3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* NAV */
+  nav{
+    position:absolute;top:0;left:0;right:0;
+    padding:28px 48px;
+    display:flex;justify-content:space-between;align-items:center;
+    z-index:10;
+  }
+  .logo{
+    font-family:'Fredoka';font-weight:700;font-size:28px;
+    color:var(--pink-500);
+  }
+  .logo span.plus{color:var(--green-600);margin:0 6px;font-weight:500}
+  .logo span.earth{color:var(--green-600)}
+  .nav-cta{
+    background:var(--ink);color:#fff;
+    padding:12px 22px;border-radius:99px;
+    text-decoration:none;font-size:14px;font-weight:500;
+    transition:transform .2s;
+  }
+  .nav-cta:hover{transform:translateY(-2px)}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    padding:140px 48px 80px;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:center;
+    position:relative;
+    background:
+      radial-gradient(ellipse at top right,var(--green-50),transparent 55%),
+      radial-gradient(ellipse at bottom left,var(--pink-50),transparent 60%),
+      var(--cream);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"🌍";
+    position:absolute;
+    top:15%;right:-40px;
+    font-size:180px;
+    opacity:.08;
+    transform:rotate(-12deg);
+  }
+  .hero-content{position:relative;z-index:2}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 16px;
+    background:#fff;
+    border:1px solid var(--green-200);
+    border-radius:99px;
+    font-size:13px;color:var(--green-600);font-weight:500;
+    margin-bottom:24px;
+  }
+  .badge .dot{width:8px;height:8px;background:var(--green-400);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+  h1{
+    font-family:'Fredoka';
+    font-weight:700;
+    font-size:80px;
+    line-height:.95;
+    margin-bottom:24px;
+    letter-spacing:-1.5px;
+  }
+  h1 .pink{color:var(--pink-300)}
+  h1 .green{color:var(--green-600)}
+  h1 .plus{
+    display:inline-block;
+    font-weight:400;
+    color:var(--ink);
+    font-size:60px;
+    transform:translateY(-8px);
+    margin:0 4px;
+  }
+  .subtitle{
+    font-size:19px;
+    color:var(--muted);
+    line-height:1.6;
+    max-width:520px;
+    margin-bottom:36px;
+  }
+  .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .btn-primary{
+    background:var(--green-600);
+    color:#fff;
+    padding:16px 32px;
+    border-radius:99px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:all .25s;
+    box-shadow:0 8px 24px rgba(78,138,60,.3);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(78,138,60,.4)}
+  .btn-secondary{
+    color:var(--ink);
+    padding:16px 24px;
+    font-weight:500;
+    font-size:15px;
+    text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-secondary:hover{color:var(--pink-500)}
+
+  /* HERO VISUAL */
+  .hero-visual{
+    position:relative;
+    height:520px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .earth-circle{
+    width:420px;height:420px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--green-400),var(--green-600));
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 30px 80px rgba(78,138,60,.35);
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .earth-circle::before{
+    content:"";
+    position:absolute;inset:20px;
+    border-radius:50%;
+    border:2px dashed rgba(255,255,255,.35);
+  }
+  .earth-emoji{font-size:180px}
+  .floating{
+    position:absolute;
+    background:#fff;
+    border-radius:20px;
+    padding:16px 20px;
+    box-shadow:0 12px 32px rgba(0,0,0,.08);
+    display:flex;align-items:center;gap:12px;
+    font-size:14px;font-weight:500;
+  }
+  .floating .emoji{font-size:24px}
+  .f1{top:30px;left:-20px;animation:float 5s ease-in-out infinite}
+  .f2{bottom:60px;right:-30px;animation:float 6s ease-in-out infinite .5s;background:var(--pink-100);color:var(--pink-500)}
+  .f3{top:50%;right:20px;animation:float 7s ease-in-out infinite 1s}
+
+  /* STATS */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    padding:60px 48px;
+    max-width:1240px;margin:0 auto;
+    border-top:1px solid var(--pink-100);
+    border-bottom:1px solid var(--pink-100);
+  }
+  .stat .num{
+    font-family:'Fredoka';font-weight:700;
+    font-size:48px;
+    color:var(--green-600);
+    line-height:1;
+  }
+  .stat:nth-child(even) .num{color:var(--pink-500)}
+  .stat .label{color:var(--muted);font-size:14px;margin-top:8px}
+
+  /* DETAILS */
+  .details{
+    padding:100px 48px;
+    max-width:1240px;margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .detail-card{
+    padding:36px;
+    border-radius:24px;
+    background:#fff;
+    border:1px solid var(--pink-100);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .detail-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.06)}
+  .detail-icon{
+    width:56px;height:56px;
+    border-radius:16px;
+    background:var(--green-50);
+    color:var(--green-600);
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;
+    margin-bottom:20px;
+  }
+  .detail-card:nth-child(2) .detail-icon{background:var(--pink-50);color:var(--pink-500)}
+  .detail-card h3{
+    font-family:'Fredoka';font-weight:600;
+    font-size:22px;margin-bottom:10px;
+  }
+  .detail-card p{color:var(--muted);line-height:1.6;font-size:15px}
+
+  /* FORM SECTION */
+  .form-section{
+    padding:100px 48px;
+    background:
+      radial-gradient(ellipse at bottom right,var(--pink-100),transparent 50%),
+      radial-gradient(ellipse at top left,var(--green-50),transparent 50%),
+      var(--cream);
+  }
+  .form-wrap{
+    max-width:960px;margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:60px;
+    align-items:center;
+  }
+  .form-intro h2{
+    font-family:'Fredoka';font-weight:700;
+    font-size:52px;line-height:1;
+    margin-bottom:20px;
+  }
+  .form-intro h2 .accent{color:var(--green-600)}
+  .form-intro p{color:var(--muted);font-size:17px;line-height:1.6;margin-bottom:28px}
+  .perks{list-style:none}
+  .perks li{
+    display:flex;align-items:center;gap:12px;
+    padding:10px 0;
+    color:var(--ink);font-size:15px;
+  }
+  .perks li::before{
+    content:"✓";
+    width:24px;height:24px;
+    background:var(--green-400);color:#fff;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;
+    flex-shrink:0;
+  }
+
+  form{
+    background:#fff;
+    padding:40px;
+    border-radius:28px;
+    box-shadow:0 30px 80px rgba(168,106,144,.12);
+  }
+  .field{margin-bottom:18px}
+  .field label{
+    display:block;
+    font-size:13px;font-weight:500;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .field input,.field select,.field textarea{
+    width:100%;
+    padding:14px 16px;
+    border:1.5px solid var(--pink-100);
+    border-radius:12px;
+    font-family:inherit;font-size:15px;
+    background:var(--cream);
+    transition:border-color .2s, background .2s;
+    color:var(--ink);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;
+    border-color:var(--green-400);
+    background:#fff;
+  }
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .checkbox{
+    display:flex;align-items:flex-start;gap:10px;
+    margin:14px 0 20px;
+    font-size:13px;color:var(--muted);line-height:1.5;
+  }
+  .checkbox input{width:18px;height:18px;margin-top:1px;accent-color:var(--green-600)}
+  .submit-btn{
+    width:100%;
+    padding:16px;
+    background:var(--green-600);
+    color:#fff;
+    border:none;border-radius:14px;
+    font-family:'Fredoka';font-weight:600;font-size:17px;
+    cursor:pointer;
+    transition:all .25s;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .submit-btn:hover{background:var(--green-800);transform:translateY(-2px)}
+  .form-footnote{text-align:center;margin-top:14px;font-size:12px;color:var(--muted)}
+
+  .success{
+    display:none;
+    text-align:center;padding:40px 20px;
+  }
+  .success.show{display:block}
+  .success .ico{
+    width:80px;height:80px;
+    background:var(--green-50);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 20px;
+    font-size:40px;
+  }
+  .success h3{font-family:'Fredoka';font-size:28px;margin-bottom:10px}
+  .success p{color:var(--muted)}
+
+  /* FOOTER */
+  footer{
+    padding:40px 48px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    border-top:1px solid var(--pink-100);
+  }
+  footer .heart{color:var(--pink-300)}
+  footer .leaf{color:var(--green-400)}
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    nav{padding:20px 24px}
+    .hero{grid-template-columns:1fr;padding:120px 24px 60px;text-align:center}
+    .hero-content{order:2}
+    .hero-visual{order:1;height:340px}
+    .earth-circle{width:280px;height:280px}
+    .earth-emoji{font-size:120px}
+    h1{font-size:52px}
+    .hero-actions{justify-content:center}
+    .stats{grid-template-columns:repeat(2,1fr);padding:40px 24px;gap:24px}
+    .details{grid-template-columns:1fr;padding:60px 24px}
+    .form-section{padding:60px 24px}
+    .form-wrap{grid-template-columns:1fr;gap:32px}
+    .form-intro h2{font-size:38px}
+    form{padding:28px}
+    .field-row{grid-template-columns:1fr}
+    .f1,.f2,.f3{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Happy<span class="plus">×</span><span class="earth">Earth Day</span></div>
+  <a href="#registro" class="nav-cta">Quiero participar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge"><span class="dot"></span>Sábado 22 de abril · 9:00 AM</div>
+    <h1>
+      <span class="pink">Happy</span> <span class="plus">×</span><br>
+      <span class="green">Día de la Tierra</span>
+    </h1>
+    <p class="subtitle">Únete a nuestra limpieza comunitaria. Una mañana para dejar las calles más lindas, respirar aire fresco y conocer gente que también cree que los pequeños gestos cambian el mundo. 🌱</p>
+    <div class="hero-actions">
+      <a href="#registro" class="btn-primary">Registrarme gratis →</a>
+      <a href="#detalles" class="btn-secondary">Ver detalles</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="earth-circle">
+      <div class="earth-emoji">🌍</div>
+    </div>
+    <div class="floating f1"><span class="emoji">🌱</span><span>Siembra cambio</span></div>
+    <div class="floating f2"><span class="emoji">💗</span><span>Con amor</span></div>
+    <div class="floating f3"><span class="emoji">🧤</span><span>Manos a la obra</span></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat"><div class="num">+200</div><div class="label">Voluntarios esperados</div></div>
+  <div class="stat"><div class="num">5</div><div class="label">Zonas de limpieza</div></div>
+  <div class="stat"><div class="num">3h</div><div class="label">De jornada</div></div>
+  <div class="stat"><div class="num">100%</div><div class="label">Gratis y familiar</div></div>
+</section>
+
+<!-- DETAILS -->
+<section class="details" id="detalles">
+  <div class="detail-card">
+    <div class="detail-icon">📍</div>
+    <h3>Dónde</h3>
+    <p>Punto de encuentro en Parque Central. Te enviaremos el mapa con la zona asignada al confirmar tu registro.</p>
+  </div>
+  <div class="detail-card">
+    <div class="detail-icon">🕘</div>
+    <h3>Cuándo</h3>
+    <p>Sábado 22 de abril, de 9:00 AM a 12:00 PM. Llega 15 minutos antes para check-in y recibir tu kit.</p>
+  </div>
+  <div class="detail-card">
+    <div class="detail-icon">🎒</div>
+    <h3>Qué llevar</h3>
+    <p>Ropa cómoda, gorra, botella de agua y muchas ganas. Nosotros ponemos guantes, bolsas y snacks al final.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="registro">
+  <div class="form-wrap">
+    <div class="form-intro">
+      <h2>Regístrate y <span class="accent">hazlo posible</span></h2>
+      <p>Llena el formulario y te confirmamos por correo con toda la info del evento.</p>
+      <ul class="perks">
+        <li>Kit oficial Happy × Earth Day</li>
+        <li>Camiseta conmemorativa (primeros 100)</li>
+        <li>Desayuno al finalizar</li>
+        <li>Certificado de participación</li>
+      </ul>
+    </div>
+
+    <form id="volunteer-form" onsubmit="handleSubmit(event)">
+      <div id="form-fields">
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" required placeholder="María">
+          </div>
+          <div class="field">
+            <label for="lastname">Apellido</label>
+            <input type="text" id="lastname" required placeholder="García">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" required placeholder="maria@correo.com">
+        </div>
+        <div class="field">
+          <label for="phone">Teléfono (WhatsApp)</label>
+          <input type="tel" id="phone" required placeholder="+52 55 1234 5678">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="people">¿Cuántos van?</label>
+            <select id="people" required>
+              <option value="1">Solo yo</option>
+              <option value="2">2 personas</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 o más</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="shirt">Talla de camiseta</label>
+            <select id="shirt" required>
+              <option value="">Selecciona</option>
+              <option>XS</option><option>S</option><option>M</option>
+              <option>L</option><option>XL</option>
+            </select>
+          </div>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Acepto recibir información del evento y autorizo a Happy a contactarme por correo o WhatsApp.</label>
+        </div>
+        <button type="submit" class="submit-btn">Confirmar mi lugar 🌱</button>
+        <p class="form-footnote">Al registrarte, te unes a una comunidad que cree en el cambio ✨</p>
+      </div>
+
+      <div class="success" id="success">
+        <div class="ico">🌱</div>
+        <h3>¡Nos vemos el sábado!</h3>
+        <p>Revisa tu correo — te enviamos todos los detalles.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  Hecho con <span class="heart">♥</span> por Happy y <span class="leaf">🌿</span> por el planeta · © 2026
+</footer>
+
+<script>
+  function handleSubmit(e){
+    e.preventDefault();
+    document.getElementById('form-fields').style.display='none';
+    document.getElementById('success').classList.add('show');
+  }
+</script>
+
+</body>
+</html>
