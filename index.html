@@ -69,6 +69,7 @@
   .hero{
     padding:32px 20px 50px;
     position:relative;
+    text-align:center;
     background:
       radial-gradient(ellipse at top right,var(--green-50),transparent 60%),
       radial-gradient(ellipse at bottom left,var(--pink-50),transparent 65%),
@@ -129,7 +130,8 @@
     margin-bottom:14px;
     font-weight:500;
   }
-  .hero-actions{display:flex;flex-direction:column;gap:10px}
+  .hero-actions{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+  .foundation-tag,.badge{align-self:center}
   .btn-primary{
     background:var(--green-600);
     color:#fff;
@@ -319,7 +321,8 @@
     max-width:960px;margin:0 auto;
     display:flex;flex-direction:column;gap:28px;
   }
-  .form-intro{text-align:left}
+  .form-intro{text-align:center}
+  .perks{display:inline-block;text-align:left}
   .form-intro h2{
     font-family:'Fredoka';font-weight:700;
     font-size:34px;line-height:1;
@@ -438,7 +441,8 @@
     .logo .paw-mini{font-size:18px}
     .nav-cta{padding:11px 20px;font-size:14px}
 
-    .hero{padding:50px 40px 70px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;min-height:80vh}
+    .hero{padding:50px 40px 70px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;min-height:80vh;text-align:left}
+    .foundation-tag,.badge{align-self:flex-start}
     .hero::before{font-size:120px;top:20%;left:0}
     .hero::after{font-size:160px;bottom:10%;right:0}
     h1{font-size:68px}
@@ -467,7 +471,8 @@
 
     .form-section{padding:80px 40px}
     .form-wrap{flex-direction:row;gap:50px;align-items:center}
-    .form-intro{flex:1}
+    .form-intro{flex:1;text-align:left}
+    .perks{display:block}
     .form-intro h2{font-size:48px}
     form{flex:1.2;padding:36px}
     .field-row{grid-template-columns:1fr 1fr;gap:12px}
@@ -526,14 +531,6 @@
   <div class="paws-bg"><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span></div>
   <strong>Un planeta sano = mascotas felices.</strong><br>Por eso salimos a la calle este 22 de abril.
 </div>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="stat"><div class="num">+200</div><div class="label">Voluntarios</div></div>
-  <div class="stat"><div class="num">5</div><div class="label">Zonas de limpieza</div></div>
-  <div class="stat"><div class="num">3h</div><div class="label">De jornada</div></div>
-  <div class="stat"><div class="num">100%</div><div class="label">Gratis y familiar</div></div>
-</section>
 
 <!-- DETAILS -->
 <section class="details" id="detalles">
